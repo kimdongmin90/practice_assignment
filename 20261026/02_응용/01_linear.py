@@ -7,7 +7,7 @@ y = [700, 800, 900, 1000]
 model = LinearRegression()
 # TODO A01: 두 입력과 정답으로 model을 학습하세요.
 # 힌트: X는 이미 4행×2열입니다.
-pass
+model.fit(X, y)
 print("계수:", model.coef_.round(1))
 print("절편:", round(model.intercept_, 1))
 print("[400, 2] 예측(ms):", model.predict([[400, 2]]).round(1))

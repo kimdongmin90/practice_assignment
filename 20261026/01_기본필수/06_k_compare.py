@@ -21,7 +21,7 @@ X_valid = valid[["input_chars"]]
 for k in [1, 3, 5]:
     # TODO B06: 고정된 이웃 수 1을 반복 변수 k로 바꾸세요.
     # 힌트: n_neighbors=k이면 반복마다 1, 3, 5로 바뀝니다.
-    model = make_pipeline(StandardScaler(), KNeighborsClassifier(n_neighbors=1))
+    model = make_pipeline(StandardScaler(), KNeighborsClassifier(n_neighbors=k)) # 반복횟수를 고정값이 아닌 1, 3, 5를 반복적으로 대입하기 위해 n_neighbors 값을 k로 변경합니다.
     model.fit(X_train, train["failed"])
     prediction = model.predict(X_valid)
     print("K:", model[-1].n_neighbors, "valid F1:", round(f1_score(valid["failed"], prediction, zero_division=0), 3))

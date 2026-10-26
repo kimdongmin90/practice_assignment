@@ -2,8 +2,8 @@
 from pathlib import Path
 import pandas as pd
 
-HERE = Path(__file__).resolve().parent
-raw = pd.read_csv(HERE / "data/requests.csv").set_index("request_id")
+HERE = Path(__file__).resolve().parent # 파일 경로를 지정하여 HERE에 저장
+raw = pd.read_csv(HERE / "data/requests.csv").set_index("request_id") # 
 # 이 표는 전날의 분할 소속과 각 분할 내부의 행 순서(position)를 함께 보존합니다.
 split = pd.read_csv(HERE / "data/split_manifest.csv")
 train_ids = split.loc[split["split"] == "train"].sort_values("position")["request_id"]
@@ -33,7 +33,7 @@ rows = []
 for k in [1, 3, 5, 9, 15]:
     # TODO A06: n_neighbors를 반복 변수 k로 바꾸세요.
     # 힌트: K만 바꾸고 전처리와 분할은 고정합니다.
-    model = Pipeline([("pre", clone(pre)), ("model", KNeighborsClassifier(n_neighbors=1))])
+    model = Pipeline([("pre", clone(pre)), ("model", KNeighborsClassifier(n_neighbors=k))]) # n_neighbors=k로 변경합니다.
     model.fit(X_train, train["failed"])
     rows.append({"K": k,
         "train_F1": f1_score(train["failed"], model.predict(X_train), zero_division=0),

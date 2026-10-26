@@ -34,9 +34,13 @@ for name, estimator in [("Dummy", DummyRegressor()), ("Linear", LinearRegression
     model = Pipeline([("pre", clone(pre)), ("model", estimator)])
     # TODO B07a: 실행시간 elapsed_ms로 학습하고 X_valid를 예측하세요.
     # 힌트: model.fit(X_train, train["elapsed_ms"]) 다음 predict(X_valid)를 연결합니다.
-    pass
-    prediction = None
-    regression_rows.append({"model": name, "MAE_ms": mean_absolute_error(valid["elapsed_ms"], prediction)})
+    model.fit(X_train, train["elapsed_ms"]) # Pipeline 첫 변환기인 pre(ColumnTransforme)가 가동되어 X_train 안의 수치형 데이터의 평균과 표준편차를 구하고, 범주형 데이터를 0, 1로 인코딩 후 학습용 최적의 숫자 행렬로 Transform합니다.
+                                            # Transform된 숫자 행렬과 우리가 정답으로 넘겨준 train["elapsed_ms"](실제 걸린 시간)를 estimator(더미 또는 선형 회귀)에게 전달합니다.
+                                            # 모델은 두 데이터를 매칭해가며 패턴을 학습합니다.
+                                            # 전처리 기준 정보와 최적의 회귀 가중치가 반영된 최종 인공지능 결합체 model이 완성됩니다.
+    prediction = model.predict(X_valid) # X_valid의 평균과 표준편차를 새로 구하지 않고 fit 단계에서 X_train을 통해 기억해 둔 평균과 표준편차 기준을 그대로 가져와 X_valid를 transform합니다.
+                                        # 변환되어 컴퓨터가 이해할 수 있게 된 검증 데이터를 estimator에 전달하면, 모델은 학습한 공식을 대입해 예측처리시간(ms)를 계산합니다.
+    regression_rows.append({"model": name, "MAE_ms": mean_absolute_error(valid["elapsed_ms"], prediction)}) # prediction값과 valid["elapsed_ms"](정답)이 비교되어 MAE나 RMSE 같은 오차 점수로 계산됩니다.
     result[name + "_ms"] = prediction
 
 for name, estimator in [("Dummy", DummyClassifier(strategy="most_frequent")),
@@ -44,8 +48,15 @@ for name, estimator in [("Dummy", DummyClassifier(strategy="most_frequent")),
     model = Pipeline([("pre", clone(pre)), ("model", estimator)])
     # TODO B07b: 실패 여부 failed로 학습하고 X_valid를 예측하세요.
     # 힌트: 회귀와 같은 흐름이며 정답 열만 failed로 바뀝니다.
-    pass
-    prediction = None
+    model.fit(X_train, train["failed"]) # X_train의 변수들이 pre(ColumnTransformer)을 거치며 컴퓨터가 연산할 수 있는 숫자 행렬로 가공됩니다.(수치형은 표준화, 범주형은 원-핫 인코딩)
+                                        # 가공된 숫자 행렬과 우리가 정답으로 넘겨준 train["failed"](0 또는 1) 데이터를 estimator(Dummy 또는 Logistic)에게 전달합니다.
+                                        # LogisticRegression의 경우, input_chars와 task_type가 어떨 때 실패(1)할 확률이 높아지는지 수학적 기준선(결정 경계)을 계산하여 학습합니다.
+                                        # 분류 기준 전처리 정보와 최적의 분류 방정식 가중치가 결합된 최종 AI 결합체 model이 완성됩니다.
+    prediction = model.predict(X_valid) # X_vaild 데이터를 변환할 때, 훈련할 때 X_train으로 기억해 둔 평균, 표준편차 및 범주 카테고리 기준을 그대로 적용하여 껍데기만 바꿉니다.(데이터 누수 방지)
+                                        # 변환이 완료된 데이터를 바탕으로 로지스틱 회귀 모델이 내부적으로 실패 확률을 계산합니다.
+                                        # 실패 확률이 기본 임계값(0.5)를 넘기면 최종 예측 결과를 1(실패)로 판정합니다.
+                                        # 검증 데이터 각 행에 대해 AI가 예측한 0(성공) 또는 1(실패)의 배열이 prediction에 담기게 됩니다.
+                                        # 이 값은 추후 실제 정답 valid["failed"]와 비교되어 F1-score, 정확도(Accuracy), 오탐/미탐 지표로 계산됩니다.
     classification_rows.append({"model": name, "F1": f1_score(valid["failed"], prediction, zero_division=0)})
     result[name + "_failed"] = prediction
 

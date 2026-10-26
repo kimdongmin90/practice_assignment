@@ -7,11 +7,13 @@ number_y = [10, 20, 40, 70, 90]
 # 3.2에 가까운 입력은 4, 2, 1입니다. 거리: 0.8, 1.2, 2.2
 # TODO B04a: 분류에서 이웃 수를 3으로 바꾸세요.
 # 힌트: n_neighbors는 참고할 이웃 수입니다.
-classifier = KNeighborsClassifier(n_neighbors=1)
+classifier = KNeighborsClassifier(n_neighbors=3) # 모델이 예측 수행 시 참고할 가장 가까운 이웃의 개수(K)를 n_neighbors를 통해 고정합니다.
+                                                 # scikit-learn이 제공하는 KNN 분류기 설계도(클래스) 명령어 KNeighborsClassifier로 분류에서 사용합니다.
 classifier.fit(X, class_y)
 print("분류:", classifier.predict([[3.2]]))
 # TODO B04b: 회귀에서도 이웃 수를 3으로 바꾸세요.
 # 힌트: 같은 이웃의 숫자 정답 [40, 20, 10]을 평균냅니다.
-regressor = KNeighborsRegressor(n_neighbors=1)
+regressor = KNeighborsRegressor(n_neighbors=3) # 모델이 예측 수행 시 참고할 가장 가까운 이웃의 개수(K)를 n_neighbors를 통해 고정합니다.
+                                               # scikit-learn이 제공하는 KNN 기반의 회귀(Regressor)모델 설계도(클래스) 명령어 KNeighborsRegressor로 사용합니다.
 regressor.fit(X, number_y)
 print("회귀:", regressor.predict([[3.2]]).round(2))
