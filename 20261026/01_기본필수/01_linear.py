@@ -8,7 +8,7 @@ model = LinearRegression()  # 선을 맞추는 모델을 준비합니다. 아직
 # TODO B01: model을 X, y로 학습하고, [[6]]의 예측을 prediction에 넣으세요.
 # 힌트: fit에는 입력과 정답, predict에는 입력만 전달합니다.
 model.fit(X, y)
-prediction = model.predict([6])
+prediction = model.predict([[6]])
 print("기울기:", round(model.coef_[0], 1))
 print("절편:", round(model.intercept_, 1))
 print("6시간 예측:", round(prediction[0], 1))
