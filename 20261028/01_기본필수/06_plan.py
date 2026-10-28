@@ -21,7 +21,7 @@ rows = []
 for name, columns in choices.items():
     model = DecisionTreeClassifier(max_depth=3, random_state=42)
     # TODO B06: 같은 folds로 model을 교차검증하세요. train만 넣고 scoring은 f1입니다.
-    scores = np.zeros(3)
+    scores = cross_val_score(model, train[columns], train["failed"], cv=folds, scoring="f1") # 
     # TODO 끝
     rows.append({"features": name, "CV_F1": scores.mean(), "CV_std": scores.std()})
 comparison = pd.DataFrame(rows)
