@@ -7,7 +7,7 @@ import torch
 # 드라이버가 있다는 사실만으로 CUDA를 선택하지 마세요.
 # >>> H01
 # TODO H01: 위 요구사항을 읽고 이 블록을 완성하세요.
-device = torch.device("cpu")
+device = torch.device("cpu") # 실행 후 결과 값 체크합니다.
 # <<< H01
 x = torch.tensor([[1., 2.], [3., 4.]]).to(device)
 result = x @ x.T

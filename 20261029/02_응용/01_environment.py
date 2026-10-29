@@ -8,7 +8,7 @@ out.mkdir(exist_ok=True)
 # 선택된 device는 아래 연산과 기록에 함께 사용합니다.
 # >>> A01
 # TODO A01: 위 요구사항을 읽고 이 블록을 완성하세요.
-device = torch.device("cpu")
+device = torch.device("cpu") # 실행 후 결과값 체크합니다.
 # <<< A01
 x = torch.tensor([1., 2.]).to(device)
 info = {"torch": str(torch.__version__), "cuda_build": torch.version.cuda,

@@ -12,7 +12,7 @@ dataset = TensorDataset(X, y)
 # 정상 데이터 10건이 4·4·2로 나뉘어야 합니다. num_workers=0을 유지합니다.
 # >>> A05
 # TODO A05: 위 요구사항을 읽고 이 블록을 완성하세요.
-loader = DataLoader(dataset, batch_size=5, shuffle=False, num_workers=0)
+loader = DataLoader(dataset, batch_size=4, shuffle=False, num_workers=0) # batch_size=4로 변경,
 # <<< A05
 sizes = []
 for index, (xb, yb) in enumerate(loader, 1):

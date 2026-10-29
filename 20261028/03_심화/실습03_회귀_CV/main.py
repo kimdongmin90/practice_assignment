@@ -11,7 +11,7 @@ train, valid = raw.loc[train_ids].copy(), raw.loc[valid_ids].copy()
 FEATURES = ["input_chars", "allowed_tools", "task_type", "priority"]
 NUM, CAT = FEATURES[:2], FEATURES[2:]
 X_train, X_valid = train[FEATURES].copy(), valid[FEATURES].copy()
-y_train, y_valid = train["failed"], valid["failed"]
+y_train, y_valid = train["elapsed_ms"], valid["elapsed_ms"]
 OUT = HERE / "outputs"
 OUT.mkdir(exist_ok=True)
 from sklearn.compose import ColumnTransformer

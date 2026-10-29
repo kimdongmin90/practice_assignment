@@ -18,13 +18,13 @@ for epoch in range(80):
     # 파라미터 값은 아직 바뀌지 않으며 .grad에 기울기가 들어갑니다.
     # >>> B06
     # TODO B06: 위 요구사항을 읽고 이 블록을 완성하세요.
-    pass
+    loss.backward()
     # <<< B06
     # 현재 gradient를 사용해 파라미터를 한 번 갱신하세요.
     # optimizer의 step 메서드를 호출합니다.
     # >>> B07
     # TODO B07: 위 요구사항을 읽고 이 블록을 완성하세요.
-    pass
+    optimizer.step()
     # <<< B07
 model.eval()
 with torch.no_grad():
