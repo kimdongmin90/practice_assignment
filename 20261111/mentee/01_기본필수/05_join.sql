@@ -9,7 +9,7 @@
 -- @step E5_GUARD expect=00000 capture=- reconnect=false
 -- 제공된 안전 확인입니다. 이 블록은 TODO가 아닙니다.
 -- 개인 수업용 DB에서만 실행합니다. 이름만 맞다고 운영 DB가 안전해지는 것은 아닙니다.
-DO $guard$
+DO $guard$ -- PostgreSQL에서 이름 없는 일회성 절차형 블록(PL/pgSQL)을 선언하고 실행하는 명령어로 별도의 영구 함수를 만들지 않고 조건문이나 에러 발생 제어를 즉석에서 가동할 때 식별자 $guard$로 감싸 실행합니다.
 BEGIN
   IF current_database() !~ '^knowledge_lab(_[a-z0-9_]+)?$' THEN
     RAISE EXCEPTION '개인 knowledge_lab DB에 다시 접속하세요. 현재 DB: %', current_database();
@@ -24,7 +24,7 @@ SET search_path TO public;
 -- 분류 PK와 지식 FK를 맞춰 분류명을 붙이세요. 결과 한 행은 지식 한 건이며 S0는 3행입니다.
 SELECT k.id, k.title, c.name AS category
 FROM public.knowledge AS k
-JOIN public.categories AS c ON __TODO_JOIN_CONDITION__
+JOIN public.categories AS c ON c.id = k.category_id
 ORDER BY k.id;
 -- END TASK B05_01
 
@@ -33,10 +33,10 @@ ORDER BY k.id;
 -- TODO B05_02
 -- 분류를 왼쪽에 두고 분류별 실제 지식 수를 세세요. 빈 reference 분류는 0이어야 합니다.
 -- 힌트: NULL인 자식 ID를 세지 않는 COUNT를 사용합니다.
-SELECT c.name AS category, __TODO_CHILD_COUNT__ AS knowledge_count
+SELECT c.name AS category, COUNT(k.id) AS knowledge_count
 FROM public.categories AS c
 LEFT JOIN public.knowledge AS k ON k.category_id = c.id
-__TODO_GROUP_BY__ c.id, c.name
+GROUP BY c.id, c.name
 ORDER BY c.id;
 -- END TASK B05_02
 

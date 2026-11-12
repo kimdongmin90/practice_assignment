@@ -50,7 +50,7 @@ SELECT id, title FROM public.knowledge WHERE id=-1;
 -- 해설 A02_04
 -- AND는 두 조건을 모두 만족하는 행만 남깁니다. S0에서는 id 1입니다. LIMIT만으로 행의 순서를 정하지 않습니다.
 SELECT id, title FROM public.knowledge
-WHERE category_id = 1 AND title ILIKE '%실습%'
+WHERE category_id = 1 AND title LIKE '%실습%'
 ORDER BY id
 LIMIT 1;
 -- END TASK A02_04

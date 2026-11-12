@@ -35,7 +35,7 @@ INSERT INTO public.knowledge(title,content,category_id) VALUES ('오류 확인',
 -- BEGIN TASK B06_01
 -- TODO B06_01
 -- 앞의 빈 본문 INSERT가 CHECK 오류로 거부된 뒤 이 구간만 따로 실행해 미확정 거래를 취소하세요.
-__TODO_ROLLBACK__;
+ROLLBACK;
 -- END TASK B06_01
 
 -- @step E6_FK_BEGIN expect=00000 capture=- reconnect=false

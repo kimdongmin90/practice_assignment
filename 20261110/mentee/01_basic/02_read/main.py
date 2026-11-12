@@ -17,7 +17,7 @@ def list_knowledge():
     # BEGIN B02-01
     # TODO B02-01: 파일 전체 data에서 entries 목록만 반환하세요. next_id가 포함된 dict 전체를 반환하지 마세요.
     # 아래 미완성 표시를 지우고 요구한 코드를 작성하세요.
-    raise NotImplementedError("B02-01를 먼저 완성하세요.")
+    return data["entries"]
     # END B02-01
 
 @app.get("/api/knowledge/{knowledge_id}")
@@ -29,7 +29,7 @@ def get_knowledge(knowledge_id: int):
         # TODO B02-02: 현재 entry의 id와 요청 knowledge_id가 같은지 비교하여 same_id에 저장하세요.
         # 힌트: 비교 결과는 True 또는 False입니다.
         # 아래 미완성 표시를 지우고 요구한 코드를 작성하세요.
-        raise NotImplementedError("B02-02를 먼저 완성하세요.")
+        same_id = entry["id"] == knowledge_id
         # END B02-02
         if same_id:
             return entry

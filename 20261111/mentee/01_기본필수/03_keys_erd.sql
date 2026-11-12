@@ -26,7 +26,7 @@ CREATE TABLE public.categories_try (
 -- BEGIN TASK B03_01
 -- TODO B03_01
 -- 연습용 분류의 id를 행 식별 키로 선언하세요. IDENTITY 자동 발급은 이 축소 예제에서 사용하지 않습니다.
-id INTEGER __TODO_PK__,
+id INTEGER PRIMARY KEY,
 -- END TASK B03_01
 name TEXT NOT NULL
 );
@@ -37,7 +37,7 @@ CREATE TABLE public.knowledge_try (
 -- TODO B03_02
 -- category_id가 categories_try.id를 참조하게 하세요. 자식이 부모를 가리키는 방향입니다.
 category_id INTEGER NOT NULL
-  __TODO_REFERENCE__ public.categories_try(id)
+  REFERENCES public.categories_try(id)
 -- END TASK B03_02
 );
 

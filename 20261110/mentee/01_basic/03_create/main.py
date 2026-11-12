@@ -50,17 +50,17 @@ def create_knowledge(payload: KnowledgeWrite):
         # BEGIN B03-01
         # TODO B03-01: 새 entry를 data 안의 entries 목록 끝에 한 번 추가하세요.
         # 아래 미완성 표시를 지우고 요구한 코드를 작성하세요.
-        raise NotImplementedError("B03-01를 먼저 완성하세요.")
+        data["entries"].append(entry)
         # END B03-01
         # BEGIN B03-02
         # TODO B03-02: 다음 생성에 쓸 next_id 값을 1 증가시키세요.
         # 아래 미완성 표시를 지우고 요구한 코드를 작성하세요.
-        raise NotImplementedError("B03-02를 먼저 완성하세요.")
+        data["next_id"] += 1
         # END B03-02
         # BEGIN B03-03
         # TODO B03-03: 변경된 data 전체를 write_data에 전달해 저장하세요. LOCK 블록 안에서 호출하세요.
         # 아래 미완성 표시를 지우고 요구한 코드를 작성하세요.
-        raise NotImplementedError("B03-03를 먼저 완성하세요.")
+        write_data(data)
         # END B03-03
     # 201을 선언하는 것만으로 저장되지는 않습니다. 실제 저장 성공 뒤 응답합니다.
     return entry

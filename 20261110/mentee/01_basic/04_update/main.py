@@ -61,7 +61,7 @@ def update_knowledge(knowledge_id: int, payload: KnowledgeWrite):
             # BEGIN B04-01
             # TODO B04-01: 현재 지식의 id와 요청 ID를 비교해 same_id에 넣으세요.
             # 아래 미완성 표시를 지우고 요구한 코드를 작성하세요.
-            raise NotImplementedError("B04-01를 먼저 완성하세요.")
+            same_id = entry["id"] == knowledge_id
             # END B04-01
             if same_id:
                 updated = payload.model_dump()
@@ -69,12 +69,12 @@ def update_knowledge(knowledge_id: int, payload: KnowledgeWrite):
                 # BEGIN B04-02
                 # TODO B04-02: 찾은 위치 i의 지식 한 개를 updated로 교체하세요. append로 추가하지 마세요.
                 # 아래 미완성 표시를 지우고 요구한 코드를 작성하세요.
-                raise NotImplementedError("B04-02를 먼저 완성하세요.")
+                updated["entries"][i] = updated
                 # END B04-02
                 # BEGIN B04-03
                 # TODO B04-03: 교체한 data를 같은 LOCK 블록 안에서 파일에 저장하세요.
                 # 아래 미완성 표시를 지우고 요구한 코드를 작성하세요.
-                raise NotImplementedError("B04-03를 먼저 완성하세요.")
+                write_data(data)
                 # END B04-03
                 return updated
     # 없는 ID를 새로 생성하지 않습니다. PUT에서도 세 입력 필드가 모두 필수입니다.

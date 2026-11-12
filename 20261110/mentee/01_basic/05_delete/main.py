@@ -5,7 +5,7 @@ from storage import LOCK, read_data, write_data
 from pydantic import BaseModel, Field
 
 # 입력 모델은 HTTP Body의 규칙입니다. DB 테이블이나 저장 코드가 아닙니다.
-class KnowledgeWrite(BaseModel):
+class KnowledgeWrite(BaseModel): # 데이터베이스에 있는 Table 구조에 따라 작성
     title: str = Field(min_length=1, max_length=80)
     content: str = Field(min_length=1, max_length=2000)
     category: str = Field(min_length=1, max_length=30)
@@ -77,12 +77,12 @@ def delete_knowledge(knowledge_id: int):
                 # BEGIN B05-01
                 # TODO B05-01: 찾은 위치 i의 지식 한 개만 entries에서 제거하세요. 파일 전체를 삭제하지 마세요.
                 # 아래 미완성 표시를 지우고 요구한 코드를 작성하세요.
-                raise NotImplementedError("B05-01를 먼저 완성하세요.")
+                data["entries"].pop(i)
                 # END B05-01
                 # BEGIN B05-02
                 # TODO B05-02: 제거한 결과를 파일에 저장하세요. 다른 항목과 next_id는 유지하세요.
                 # 아래 미완성 표시를 지우고 요구한 코드를 작성하세요.
-                raise NotImplementedError("B05-02를 먼저 완성하세요.")
+                write_data(data)
                 # END B05-02
                 return Response(status_code=204)
     raise HTTPException(404, "Knowledge not found")

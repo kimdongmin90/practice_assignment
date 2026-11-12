@@ -10,5 +10,5 @@ def health():
     # TODO B01-01: status 키의 값이 ok인 dict를 반환하세요. GET /health의 본문은 {"status":"ok"}여야 합니다.
     # 힌트: return을 사용합니다.
     # 아래 미완성 표시를 지우고 요구한 코드를 작성하세요.
-    raise NotImplementedError("B01-01를 먼저 완성하세요.")
+    return {"status": "ok"}
     # END B01-01

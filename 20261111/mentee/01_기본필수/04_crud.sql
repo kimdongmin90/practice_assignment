@@ -29,9 +29,9 @@ BEGIN;
 -- TODO B04_01
 -- 지식 한 건을 INSERT하고 생성 결과를 RETURNING으로 받으세요. id는 입력하지 않습니다.
 -- 응용·심화는 실제 id를 __NEW_ID__에 넣고 다음 변경을 같은 트랜잭션에서 진행합니다.
-__TODO_INSERT__ public.knowledge (title, content, category_id)
+INSERT INTO public.knowledge (title, content, category_id)
 VALUES ('임시 안내', '취소할 연습 데이터입니다.', 1)
-__TODO_RETURNING__ id, title, content, category_id;
+RETURNING id, title, content, category_id;
 -- END TASK B04_01
 
 -- @step E4_INSERT_CANCEL expect=00000 capture=- reconnect=false
@@ -49,8 +49,8 @@ BEGIN;
 -- 지정한 지식 한 건의 content만 수정하세요. 먼저 같은 ID의 현재 행을 SELECT합니다.
 -- ID와 전체 행 수는 바뀌지 않아야 하며 제목·분류를 바꾸지 않습니다.
 UPDATE public.knowledge
-__TODO_SET__ content = '수정 연습 안내입니다.'
-__TODO_WHERE__ id = 2
+SET content = '수정 연습 안내입니다.'
+WHERE id = 2
 RETURNING id, title, content;
 -- END TASK B04_02
 
@@ -67,7 +67,7 @@ BEGIN;
 -- BEGIN TASK B04_03
 -- TODO B04_03
 -- 지정된 ID의 지식만 삭제하고 삭제된 id·title을 반환하세요. 표나 분류를 삭제하지 않습니다.
-__TODO_DELETE_FROM__ public.knowledge
+DELETE FROM public.knowledge
 WHERE id = 3
 RETURNING id, title;
 -- END TASK B04_03
