@@ -29,8 +29,15 @@ def main():
     # 완료 확인: outputs/architecture.md 와 architecture.json을 확인합니다.
     # 주의: 그림의 RAG·Agent는 후속 수업의 개념이며 오늘 동작하지 않습니다.
     # BEGIN D20-01-B02
-    edges = [("Client", "FastAPI", "HTTP 요청"), ("FastAPI", "PostgreSQL", "원본 지식 조회·수정"), ("", "", ""), ("", "", ""), ("", "", ""), ("", "", "")]  # 힌트: (출발점, 도착점, 화살표 설명) 순서로 추가
-                                           # 선택 입력구간
+    edges = [
+        ("Client", "FastAPI", "HTTP 요청"),
+        ("FastAPI", "PostgreSQL", "원본 지식 조회·수정"),
+        ("PostgreSQL", "FastAPI", "원본 데이터"),
+        ("FastAPI", "LLM", "입력·문맥(후속 구현)"),
+        ("LLM", "Response", "생성 결과(후속 구현)"),
+        ("Response", "Client", "JSON")
+    ] # 힌트: (출발점, 도착점, 화살표 설명) 순서로 추가
+      # 선택 입력구간
     # 예: edges.append(("Client", "FastAPI", "HTTP 요청"))
     # TODO: API→DB, API→LLM(후속), LLM→응답(후속) 등의 연결 추가
     
@@ -43,14 +50,14 @@ def main():
     # 완료 확인: outputs/architecture.md 와 architecture.json을 확인합니다.
     # 주의: 그림의 RAG·Agent는 후속 수업의 개념이며 오늘 동작하지 않습니다.
     # BEGIN D20-01-B03
-    node_names = sorted([])  # 힌트: edges에서 시작·도착 노드 이름을 모으세요.
-    node_id = {}              # 힌트: {노드이름: "N0"} 형태의 ID 표
+    node_names = sorted({n for a,b,_ in edges for n in (a,b)}) # 힌트: edges에서 시작·도착 노드 이름을 모으세요.
+    node_id = {name:f"N{i}" for i, name in enumerate(node_names)} # 힌트: {노드이름: "N0"} 형태의 ID 표
     lines = ["flowchart LR"] # Mermaid 그래프 시작 선언
-    lines += []               # TODO: 노드 생성 줄을 추가하세요.
-    lines += []               # TODO: 연결 화살표 줄을 추가하세요.
-    write_md(HERE / "outputs" / "architecture.md", "")  # TODO: 제목과 Mermaid 코드 문자열
-    write_json(HERE / "outputs" / "architecture.json", {})  # TODO: roles·edges 등 요약
-    raise NotImplementedError("D20-01-B03: TODO를 완성하세요")
+    lines += [f' {node_id[name]} ["{name}"]' for name in node_names] # TODO: 노드 생성 줄을 추가하세요.
+    lines += [f' {node_id[a]} --> |"{label}"| {node_id[b]}' for a, b, label in edges] # TODO: 연결 화살표 줄을 추가하세요.
+    write_md(HERE / "outputs" / "architecture.md", "# AI 지식 플랫폼 개념도\n\n```mermaid\n"+"\n".join(lines)+"\n```\n")  # TODO: 제목과 Mermaid 코드 문자열
+    write_json(HERE / "outputs" / "architecture.json", {"roles":roles,"edges":[list(x) for x in edges],
+            "responsibility":responsibility,"trust_boundary":trust_boundary,})  # TODO: roles·edges 등 요약
     # END D20-01-B03
     print("[01] architecture.md / architecture.json 생성 완료")
 

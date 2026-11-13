@@ -18,16 +18,15 @@ def main():
     # BEGIN D20-02-B01
     rows = []
     for item in DATA:
-        record = tok.encode(item["content"])  # TODO: item의 content 문자열로 바꾸세요.
+        record = tok.encode(item["content"]) # TODO: item의 content 문자열로 바꾸세요.
         rows.append({
             "id": item["id"],
             "text": item["content"],
             "tokens": record["Token"],    # TODO: record에서 Token 목록 가져오기
             "ids": record["input_ids"],       # TODO: record에서 input_ids 가져오기
-            "count": (8, 7, 9),      # TODO: PAD 제외 유효 Token 개수
-            "special_count": ,  # TODO: 이 ToyTokenizer의 BOS/EOS 개수
+            "count": ["valid_length"],      # TODO: PAD 제외 유효 Token 개수
+            "special_count": 2,  # TODO: 이 ToyTokenizer의 BOS/EOS 개수
         })
-    return 
     # END D20-02-B01
 
     # TODO D20-02-B02: 길이가 다른 두 입력을 Padding하고 attention_mask의 0/1을 확인하세요.
@@ -35,10 +34,9 @@ def main():
     # 완료 확인: outputs/token_report.json 의 tokens·ids·count·mask·budget 값을 확인합니다.
     # 주의: ToyTokenizer는 실제 서브워드 토크나이저가 아니며 임의 모델의 Token 수를 대표하지 않습니다.
     # BEGIN D20-02-B02
-    batch = tok.batch(["", ""])  # TODO: "AI", "FastAPI와 PostgreSQL" 입력
-    # TODO: batch[0]과 batch[1]의 input_ids 길이를 비교하는 assert
-    # TODO: attention_mask와 input_ids의 길이를 비교하는 assert
-    raise NotImplementedError("D20-02-B02: TODO를 완성하세요")
+    batch = tok.batch(["AI", "FastAPI와 PostgreSQL"]) # 
+    assert len(batch[0]["input_ids"]) == len(batch[1]["input_ids"]) # TODO: batch[0]과 batch[1]의 input_ids 길이를 비교하는 assert
+    assert all(len(b["input_ids"]) == len(b["attention_mask"]) for b in batch) # TODO: attention_mask와 input_ids의 길이를 비교하는 assert
     # END D20-02-B02
 
     # TODO D20-02-B03: PPT 문맥 예시(300+1200+2000+150, 출력 예약 850)의 합과 남는 예산을 계산하세요.
@@ -46,10 +44,9 @@ def main():
     # 완료 확인: outputs/token_report.json 의 tokens·ids·count·mask·budget 값을 확인합니다.
     # 주의: ToyTokenizer는 실제 서브워드 토크나이저가 아니며 임의 모델의 Token 수를 대표하지 않습니다.
     # BEGIN D20-02-B03
-    parts = {"system": 0, "history": 0, "evidence": 0, "user": 0}  # TODO: PPT 수치 입력
-    budget = context_budget(5000, parts, 0)  # TODO: 출력 예약 850 Token
+    parts = {"system": 300, "history": 1200, "evidence": 2000, "user": 150}  # TODO: PPT 수치 입력
+    budget = context_budget(5000, parts, 850)  # TODO: 출력 예약 850 Token
     # 힌트: budget["remaining"]은 입력+출력 예약 뒤 남는 Token입니다.
-    raise NotImplementedError("D20-02-B03: TODO를 완성하세요")
     # END D20-02-B03
     trunc_cases = {}
     batch_report = []
@@ -64,9 +61,9 @@ def main():
     # BEGIN D20-02-B04
     result = {
         "tokenizer_kind": "교육용 규칙 기반 (실제 사전학습 모델 아님)",
-        "records": [],          # TODO: 위에서 만든 rows
-        "batch": [],            # TODO: Padding 결과
-        "budget": {},           # TODO: Context Window 예산
+        "records": rows,          # TODO: 위에서 만든 rows
+        "batch": batch,            # TODO: Padding 결과
+        "budget": budget,           # TODO: Context Window 예산
         "truncation": trunc_cases,
         "batch_report": batch_report,
         "language_comparison": mixed_rows,
@@ -75,7 +72,6 @@ def main():
     }
     write_json(HERE / "outputs" / "token_report.json", result)  # 결과를 파일에 저장
     print("[02] Token 분석", [(r["id"], r["count"]) for r in rows])
-    raise NotImplementedError("D20-02-B04: TODO를 완성하세요")
     # END D20-02-B04
 
 if __name__=="__main__":
