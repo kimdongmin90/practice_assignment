@@ -13,7 +13,7 @@ $guard$;
 -- BEGIN B-SQL-01
 -- TODO B-SQL-01: 초기 S0에서 id·title만 id 오름차순으로 조회하세요.
 SELECT id, title FROM public.knowledge
-__TODO_B_SQL_01__ id;
+ORDER BY id;
 -- END B-SQL-01
 -- ENDCASE R01
 
@@ -22,7 +22,7 @@ __TODO_B_SQL_01__ id;
 -- TODO B-SQL-02: ID 2의 id·title·content·category_id를 조회하세요.
 SELECT id, title, content, category_id
 FROM public.knowledge
-__TODO_B_SQL_02__ id = 2;
+WHERE id = 2;
 -- END B-SQL-02
 -- ENDCASE R02
 
@@ -32,7 +32,7 @@ __TODO_B_SQL_02__ id = 2;
 -- 오름차순으로 조회하세요.
 SELECT k.id, k.title, c.name AS category
 FROM public.knowledge AS k
-JOIN public.categories AS c ON __TODO_B_SQL_03__
+JOIN public.categories AS c ON c.id = k.id
 ORDER BY k.id;
 -- END B-SQL-03
 -- ENDCASE R03
