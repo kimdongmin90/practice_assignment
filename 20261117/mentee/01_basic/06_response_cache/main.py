@@ -17,21 +17,17 @@ def key_of(request, scope, validator_version="day21-v1"):
     # TODO D22-06-B01: 질문뿐 아니라 모델·전체요청·Schema·검증버전·scope로 캐시키를 만드세요.
     # 입력·완료 기준: API키는포함하지않습니다. 전체본문이키에들어가야같은ID의내용변경도감지합니다.
     # BEGIN D22-06-B01
-    basis = {"scope": scope, "model": None, "request": request,
-             "format": None, "validator_version": validator_version}
-    key = None  # digest(basis): 정렬된JSON의SHA-256
-    raise NotImplementedError("D22-06-B01: TODO를 완성하고 이 raise를 제거하세요")
-    return key  # 위 TODO와 raise 제거를 마친 뒤 반환합니다.
+    basis = {"scope": scope, "model": request["model"], "request": request,
+             "format": request.get("text", {}).get("format"), "validator_version": validator_version} # 정렬된JSON의SHA-256
+    return digest(basis) # 
     # END D22-06-B01
 
 def approved_cache(cache, key, now, provided_ids, *, expected_source, scope):
-    # TODO D22-06-B02: 현재문맥·실행출처·scope와함께 제공된 안전한캐시검사를 호출하세요.
-    # 입력·완료 기준: 만료·미승인·현재출처불일치는미스입니다. 승인하려면tools/review.py로사람이기록합니다.
+    # TODO D22-06-B02: 현재문맥·실행출처·scope와 함께 제공된 안전한 캐시검사를 호출하세요.
+    # 입력·완료 기준: 만료·미승인·현재출처불일치는 미스입니다. 승인하려면 tools/review.py로 사람이 기록합니다.
     # BEGIN D22-06-B02
-    cached = None  # checkpoint_cache(..., expected_source=expected_source, scope=scope)
-    # None은미스입니다. 새답변을가짜로만들지않습니다.
-    raise NotImplementedError("D22-06-B02: TODO를 완성하고 이 raise를 제거하세요")
-    return cached  # 위 TODO와 raise 제거를 마친 뒤 반환합니다.
+    cached = checkpoint_cache(cache, key, now, provided_ids, expected_source=expected_source, scope=scope) # 
+    return cached # 
     # END D22-06-B02
 
 def compare_context_keys():
@@ -43,9 +39,11 @@ def compare_context_keys():
     case, selected, instructions = input_parts("H01")
     model = load_settings("simulated").models["fast"]
     first = checkpoint_request(model, instructions, case["question"], selected)
-    changed = deepcopy(selected)  # 원본JSON파일은바꾸지않습니다.
+    selected[0]["content"] += "실행 환경도 함께 적습니다."
+    second = checkpoint_request(model, instructions, case["question"], selected) # 원본JSON파일은바꾸지않습니다.
+    assert key_of(first, "classroom-demo") != key_of(second, "classroom-demo")
     # changed[0]["content"]수정 → 두번째request → key비교
-    raise NotImplementedError("D22-06-B03: TODO를 완성하고 이 raise를 제거하세요")
+    return {"changed_context_miss": True, "source_mode": "simulated", "new_api_count": 0}
     # END D22-06-B03
 
 def main():

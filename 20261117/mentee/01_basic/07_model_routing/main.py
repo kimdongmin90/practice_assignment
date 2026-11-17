@@ -12,35 +12,29 @@ from coursekit.config import choose_model as checkpoint_choose
 from coursekit.labs import routing_lab
 
 def route(mode, models):
-    # TODO D22-07-B01: fast·quality만허용하고실제모델과선택이유를반환하세요.
-    # 입력·완료 기준: 알수없는모드를fast로조용히바꾸지않습니다. quality권한없으면not_run입니다.
+    # TODO D22-07-B01: fast·quality만 허용하고 실제모델과 선택이유를 반환하세요.
+    # 입력·완료 기준: 알 수 없는 모드를 fast로 조용히 바꾸지 않습니다. quality권한 없으면 not_run입니다.
     # BEGIN D22-07-B01
-    allowed = {"fast", "quality"}
-    model = None   # models.get(mode), 미설정은오류
-    reason = ""    # explicit_mode:<mode>
-    # checkpoint_choose(mode, models)를이용할수있습니다.
-    raise NotImplementedError("D22-07-B01: TODO를 완성하고 이 raise를 제거하세요")
-    return (model, reason)  # 위 TODO와 raise 제거를 마친 뒤 반환합니다.
+    if mode not in {"fast", "quality"}: 
+        raise ValueError("지원하지 않는 실행 모드") # 
+    return checkpoint_choose(mode, models) # 
     # END D22-07-B01
 
 def record_view(result):
-    # TODO D22-07-B02: 어떤모델이든동일한결과필드로비교하세요.
-    # 입력·완료 기준: 고가모델이항상더좋다는결론을미리넣지않습니다.
+    # TODO D22-07-B02: 어떤 모델이든 동일한 결과필드로 비교하세요.
+    # 입력·완료 기준: 고가모델이 항상 더 좋다는 결론을 미리 넣지않습니다.
     # BEGIN D22-07-B02
-    fields = ["case_id", "source_mode", "model", "route_reason", "run_status",
-              "answer_object", "evidence_ok", "usage", "request_ms", "estimated_usd"]
-    row = {}  # {key: result.get(key) for key in fields}
-    raise NotImplementedError("D22-07-B02: TODO를 완성하고 이 raise를 제거하세요")
-    return row  # 위 TODO와 raise 제거를 마친 뒤 반환합니다.
+    row = {key: result.get(key) for key in ("case_id", "source_mode", "model", "route_reason", "run_status",
+              "answer_object", "evidence_ok", "usage", "request_ms", "estimated_usd")} # 
+    return row # 
     # END D22-07-B02
 
 def comparison_modes():
-    # TODO D22-07-B03: 명시적비교에서만fast·quality를한번씩선택하세요.
-    # 입력·완료 기준: 기본run은한모델만호출합니다. compare는계정권한·예산확인후선택합니다.
+    # TODO D22-07-B03: 명시적비교에서만 fast·quality를 한번씩 선택하세요.
+    # 입력·완료 기준: 기본 run은 한 모델만 호출합니다. compare는 계정권한·예산 확인 후 선택합니다.
     # BEGIN D22-07-B03
-    modes = []  # fast와quality각한번, while fallback금지
-    raise NotImplementedError("D22-07-B03: TODO를 완성하고 이 raise를 제거하세요")
-    return modes  # 위 TODO와 raise 제거를 마친 뒤 반환합니다.
+    modes = ["fast", "quality"]  # fast와 quality 각 한번, while fallback 금지
+    return modes # 
     # END D22-07-B03
 
 def main():
