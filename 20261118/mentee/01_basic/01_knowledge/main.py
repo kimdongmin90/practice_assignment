@@ -23,8 +23,7 @@ def select_original(rows):
         개념: 원문 ID 고정·검색할 자료의 범위.
     """
     # TODO D23-01-B01: 위 입력·출력 계약에 맞게 직접 구현합니다.
-    raise NotImplementedError("D23-01-B01: 직접 구현하세요")
-    return sorted()
+    return sorted((dict(r) for r in rows if r['id'] in (101, 102, 103)), key=lambda r:r['id'])
 # END D23-01-B01
 
 # BEGIN D23-01-B02
@@ -36,8 +35,7 @@ def make_passage_input(row):
         개념: FAQ 질문과 달리 지식 본문을 검색 대상으로 사용합니다.
     """
     # TODO D23-01-B02: 위 입력·출력 계약에 맞게 직접 구현합니다.
-    raise NotImplementedError("D23-01-B02: 직접 구현하세요")
-    return 'passage: ' + row[''] + ' ' + row['']
+    return 'passage: ' + row['title'] + ' ' + row['content']
 # END D23-01-B02
 
 # BEGIN D23-01-B03
@@ -49,8 +47,7 @@ def make_mapping(rows):
         개념: 벡터를 생성하기 전에도 원문·ID·버전을 추적해야 합니다.
     """
     # TODO D23-01-B03: 위 입력·출력 계약에 맞게 직접 구현합니다.
-    raise NotImplementedError("D23-01-B03: 직접 구현하세요")
-    return [dict('') for r in rows]
+    return [dict(id=r['id'], title=r['title'], content=r['content'], category=r['category'], source_version=r['source_version'], passage_input= make_passage_input(r)) for r in rows]
 # END D23-01-B03
 
 

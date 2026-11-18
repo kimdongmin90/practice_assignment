@@ -21,9 +21,7 @@ def dot(a,b):
         같은 위치의 숫자를 곱해 합산하는 내적을 구현하세요.
         예: (1,0)·(0.8,0.6)=0.8. 입력 NumPy 배열 2개, 출력 float.
     """
-    # TODO D23-02-B01: 위 입력·출력 계약에 맞게 직접 구현합니다.
-    raise NotImplementedError("D23-02-B01: 직접 구현하세요")
-    return float(np.dot())
+    return float(np.dot(a, b))
 # END D23-02-B01
 
 # BEGIN D23-02-B02
@@ -34,11 +32,11 @@ def cosine(a,b):
         q=(1,0), A=(0.8,0.6)라면 0.8입니다.
         입력: NumPy 배열 2개. 출력: float. 영벡터는 무조건 거부합니다.
     """
-    # TODO D23-02-B02: 위 입력·출력 계약에 맞게 직접 구현합니다.
-    raise NotImplementedError("D23-02-B02: 직접 구현하세요")
-    length_a = np.linalg.norm()
-    length_b = np.linalg.norm()
-    return dot(a, b) / (...)
+    length_a = np.linalg.norm(a); length_b = np.linalg.norm(b)
+    na = float(length_a); nb = float(length_b)
+    if na <= 1e-12 or nb <= 1e-12:
+        raise ValueError('zero_vector')
+    return dot(a, b) / (na * nb)
 # END D23-02-B02
 
 # BEGIN D23-02-B03
@@ -48,9 +46,7 @@ def l2(a,b):
         두 벡터의 좌표 차이로 L2 거리를 구하세요. 출력 float.
         q=(1,0), A=(0.8,0.6) → sqrt(0.4) ≈ 0.6325.
     """
-    # TODO D23-02-B03: 위 입력·출력 계약에 맞게 직접 구현합니다.
-    raise NotImplementedError("D23-02-B03: 직접 구현하세요")
-    return float(np.linalg.norm())
+    return float(np.linalg.norm(a-b))
 # END D23-02-B03
 
 

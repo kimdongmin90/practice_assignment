@@ -23,9 +23,7 @@ def make_passages(rows):
         문서에는 'passage: ' + 제목 + ' ' + 본문을 사용합니다.
         한 행마다 정확히 한 문자열을 만들어 순서를 유지하세요.
     """
-    # TODO D23-03-B01: 위 입력·출력 계약에 맞게 직접 구현합니다.
-    raise NotImplementedError("D23-03-B01: 직접 구현하세요")
-    return [passage_text() for row in rows]
+    return [passage_text(row) for row in rows]
 # END D23-03-B01
 
 # BEGIN D23-03-B02
@@ -36,9 +34,7 @@ def make_queries(questions):
         출력: 입력과 동일한 순서의 문자열 리스트.
         빈 질문을 추가해 그럴듯한 벡터를 만들지 마세요.
     """
-    # TODO D23-03-B02: 위 입력·출력 계약에 맞게 직접 구현합니다.
-    raise NotImplementedError("D23-03-B02: 직접 구현하세요")
-    return ['query: ' + '' for q in questions]
+    return ['query: ' + q for q in questions]
 # END D23-03-B02
 
 # BEGIN D23-03-B03
@@ -50,11 +46,9 @@ def encode_both(encoder,passages,queries):
         결과: (doc_vectors, query_vectors). 기본필수의 모의 모드와
         --mode live의 E5 실측을 구분하여 같은 API를 사용합니다.
     """
-    # TODO D23-03-B03: 위 입력·출력 계약에 맞게 직접 구현합니다.
-    raise NotImplementedError("D23-03-B03: 직접 구현하세요")
-    docs = encoder.encode(...)
-    queries_vec = encoder.encode(...)
-    return docs, queries_vec
+    docs = encoder.encode(passages, normalize_embeddings= True, convert_to_numpy= True, batch_size= 8)
+    queries_vec = encoder.encode(queries, normalize_embeddings= True, convert_to_numpy= True)
+    return np.asarray(docs, dtype=np.float32), np.asarray(queries_vec, dtype=np.float32)
 # END D23-03-B03
 
 
