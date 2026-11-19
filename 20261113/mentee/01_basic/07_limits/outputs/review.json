@@ -1,0 +1,26 @@
+{
+  "classification": [
+    {
+      "id": "F01",
+      "kind": "factual_mismatch"
+    },
+    {
+      "id": "F02",
+      "kind": "format"
+    },
+    {
+      "id": "F03",
+      "kind": "evidence"
+    }
+  ],
+  "definitions": {
+    "format": "JSON에 필수 필드가 있는지",
+    "evidence": "출처의 존재·적절성",
+    "factual_mismatch": "확인된 원본과 주장의 불일치"
+  },
+  "mitigation": {},
+  "checks": [],
+  "agent_case": {},
+  "trust_rules": [],
+  "disclaimer": "교육용 규칙이며 실제 LLM 사실성 자동 판정 아님"
+}
