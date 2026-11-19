@@ -24,8 +24,7 @@ def create_index_sql():
         인덱스는 선택 항목이며 9건에서 빠른 성능을 보장하지 않습니다.
     """
     # TODO D23-06-B01: 위 입력·출력 계약에 맞게 직접 구현합니다.
-    raise NotImplementedError("D23-06-B01: 직접 구현하세요")
-    return "CREATE INDEX IF NOT EXISTS ... ON day23_search_docs USING hnsw (embedding ...);"
+    return HNSW_SQL
 # END D23-06-B01
 
 # BEGIN D23-06-B02
@@ -35,10 +34,11 @@ def explain_sql():
         SELECT id FROM day23_search_docs를 거리순으로 검색하는
         EXPLAIN (ANALYZE, BUFFERS) SQL을 작성하세요. 바인딩은 %s 두 개.
         인덱스 사용 여부를 임의로 주장하면 안 됩니다.
-    """
-    # TODO D23-06-B02: 위 입력·출력 계약에 맞게 직접 구현합니다.
-    raise NotImplementedError("D23-06-B02: 직접 구현하세요")
-    return "EXPLAIN (ANALYZE, BUFFERS) SELECT id FROM day23_search_docs WHERE ... ORDER BY embedding <=> %s ASC LIMIT 3"
+    """ # 
+    return """EXPLAIN (ANALYZE, BUFFERS)
+    SELECT id FROM day23_search_docs
+    WHERE embedding_model=%s
+    ORDER BY embedding <=> %s ASC LIMIT 3"""
 # END D23-06-B02
 
 # BEGIN D23-06-B03
@@ -48,10 +48,12 @@ def read_scan_type(plan_lines):
         PostgreSQL EXPLAIN 텍스트에서 Index Scan / Seq Scan / 기타를 구분하세요.
         계획이 없으면 unknown, index가 있으면 index, seq면 seq로 반환합니다.
         작은 9건 테이블에서 Seq Scan은 오류가 아닙니다.
-    """
-    # TODO D23-06-B03: 위 입력·출력 계약에 맞게 직접 구현합니다.
-    raise NotImplementedError("D23-06-B03: 직접 구현하세요")
-    plan_text = ' '.join(plan_lines)
+    """ # 
+    s = ' '.join(plan_lines)
+    if 'Index Scan' in s:
+        return 'index'
+    if 'Seq Scan' in s:
+        return 'seq'
     return 'unknown'
 # END D23-06-B03
 
