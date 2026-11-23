@@ -18,22 +18,20 @@ COMPONENT_INPUTS = {
 
 def component_outputs() -> dict[str, str]:
     """강의에서 다룬 네 구성요소의 출력 자료형을 대응시킵니다."""
+    return{"Document": "본문·출처를 보관하는 데이터 객체", "Retriever": "list[Document]", "Prompt": "ChatPromptValue", "Chat Model": "AIMessage"}
     # BEGIN D26-03-B01
     # TODO D26-03-B01: 네 구성요소의 반환값을 구분해 dict로 반환합니다.
     # 힌트: Prompt는 ChatPromptValue, Chat Model은 AIMessage입니다.
     # 함수의 docstring·README·expected/EXPECTED.md에서 입력과 완료 조건을 확인하세요.
-    # 구현 후 아래 NotImplementedError를 제거하세요. 정답은 이 아래에 숨겨져 있지 않습니다.
-    raise NotImplementedError("D26-03-B01 TODO 미완성")
     # END D26-03-B01
 
 def access_kinds() -> dict[str, str]:
     """데이터를 읽는 경우와 invoke로 작업을 실행하는 경우를 구분합니다."""
+    return{"Document": "data", "Retriever":"invoke", "Prompt":"invoke", "Chat Model":"invoke"}
     # BEGIN D26-03-B02
     # TODO D26-03-B02: Document는 data, 실행 구성요소는 invoke로 표시합니다.
     # 힌트: 값 읽기와 실행을 구분합니다. 여기서는 실제 API 호출을 하지 않습니다.
     # 함수의 docstring·README·expected/EXPECTED.md에서 입력과 완료 조건을 확인하세요.
-    # 구현 후 아래 NotImplementedError를 제거하세요. 정답은 이 아래에 숨겨져 있지 않습니다.
-    raise NotImplementedError("D26-03-B02 TODO 미완성")
     # END D26-03-B02
 
 def main():
