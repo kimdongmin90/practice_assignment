@@ -17,21 +17,21 @@ from coursekit.io import save_json, show_success
 
 def make_inputs(question: str, context: str) -> dict:
     """입력: 질문·근거 문자열 / 출력: question, context 두 Key를 가진 dict."""
+    return{"question": question, "context": context}
     # BEGIN D26-05-B01
     # TODO D26-05-B01: 질문과 Context를 각각 question·context Key로 묶어 반환합니다.
     # 힌트: Dictionary의 두 Key 이름은 Prompt의 변수 이름과 같아야 합니다.
-    # 완료 후 아래 NotImplementedError를 제거하고 반환값을 확인하세요.
-    raise NotImplementedError("D26-05-B01 TODO 미완성")
     # END D26-05-B01
 
 
 def invoke_pair(prompt, chat_model, inputs: dict):
     """dict → ChatPromptValue → AIMessage. 반환: (prompt_value, message)."""
+    prompt_value = prompt.invoke(inputs)
+    message = chat_model.invoke(prompt_value)
+    return prompt_value, message
     # BEGIN D26-05-B02
     # TODO D26-05-B02: Prompt를 먼저 실행하고 그 반환값을 Chat Model에 전달한 뒤 두 반환값을 함께 반환합니다.
     # 힌트: 첫 invoke의 반환값이 둘째 invoke의 입력입니다. 반환 순서는 (prompt_value, message)입니다.
-    # 완료 후 아래 NotImplementedError를 제거하고 반환값을 확인하세요.
-    raise NotImplementedError("D26-05-B02 TODO 미완성")
     # END D26-05-B02
 
 
