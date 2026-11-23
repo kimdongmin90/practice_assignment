@@ -17,21 +17,24 @@ from coursekit.io import save_json, show_success
 
 def prepare_context(documents, question: str, max_items=2, max_chars=600) -> dict:
     """Document 목록 → Context·포함 문서·포함 ID·Prompt 입력. 원문은 바꾸지 않습니다."""
+    context, included_docs = build_context(documents, max_items=max_items, max_chars=max_chars)
+    provided_ids = [doc.metadata["citation_id"] for doc in included_docs]
+    return {"context": context, "included_docs": included_docs,
+            "provided_ids": provided_ids,
+            "inputs": {"question": question, "context": context}}
     # BEGIN D26-06-B01
     # TODO D26-06-B01: build_context로 Context와 포함 문서를 얻고, 포함 ID 및 Prompt 입력을 함께 반환합니다.
     # 힌트: 반환 Key는 context, included_docs, provided_ids, inputs입니다. ID는 included_docs에서만 모읍니다.
-    # 완료 후 아래 NotImplementedError를 제거하고 반환값을 확인하세요.
-    raise NotImplementedError("D26-06-B01 TODO 미완성")
     # END D26-06-B01
 
 
 def run_generation(prompt, structured_model, inputs: dict):
     """Prompt → Structured Model의 bundle. bundle 검증·승인은 다음 실습입니다."""
+    generation = prompt | structured_model
+    return generation.invoke(inputs)
     # BEGIN D26-06-B02
     # TODO D26-06-B02: Prompt와 Structured Model을 |로 연결하고 inputs로 실행하여 bundle을 반환합니다.
     # 힌트: Chain의 앞 단계 출력이 뒤 단계 입력입니다. 반환 bundle의 raw·parsed·parsing_error를 그대로 보존합니다.
-    # 완료 후 아래 NotImplementedError를 제거하고 반환값을 확인하세요.
-    raise NotImplementedError("D26-06-B02 TODO 미완성")
     # END D26-06-B02
 
 
