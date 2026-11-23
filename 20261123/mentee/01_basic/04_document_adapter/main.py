@@ -16,16 +16,16 @@ METADATA_KEYS = ("citation_id", "chunk_id", "doc_id", "source_version", "source_
 
 def to_document(hit: dict) -> Document:
     """한 Hit의 본문과 여섯 Metadata 값을 Document로 옮깁니다."""
+    Document = {k: hit[k] for k in METADATA_KEYS}
     # BEGIN D26-04-B01
     # TODO D26-04-B01: 본문을 page_content로, 제공된 여섯 Key를 metadata로 옮깁니다.
     # 힌트: Document(page_content=..., metadata=...)를 사용합니다.
     # 함수의 docstring·README·expected/EXPECTED.md에서 입력과 완료 조건을 확인하세요.
-    # 구현 후 아래 NotImplementedError를 제거하세요. 정답은 이 아래에 숨겨져 있지 않습니다.
-    raise NotImplementedError("D26-04-B01 TODO 미완성")
     # END D26-04-B01
 
 def hits_to_documents(hits: list[dict]) -> list[Document]:
     """순서대로 변환한 Document 목록을 반환합니다. 빈 입력은 빈 목록입니다."""
+
     # BEGIN D26-04-B02
     # TODO D26-04-B02: 입력 순서대로 to_document를 호출해 목록을 반환합니다.
     # 힌트: 빈 목록도 특별한 가짜 문서 없이 그대로 빈 결과가 됩니다.
