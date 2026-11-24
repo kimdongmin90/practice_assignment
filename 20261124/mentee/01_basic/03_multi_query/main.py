@@ -13,8 +13,8 @@ from coursekit.io import save_report
 
 def plan_queries(base, extras):
     """원 질문을 포함한 서로 다른 질문 2개로 시작합니다."""
-    
-    for query in base["plan_queries"]:
+    from coursekit.multi_query import unique_queries
+    return unique_queries(base, extras[:1], max_queries=2)
     # BEGIN D27-03-B01
     # TODO D27-03-B01: 원 질문을 포함한 서로 다른 질문 2개로 시작합니다.
     # END D27-03-B01
@@ -22,7 +22,7 @@ def plan_queries(base, extras):
 
 def merge_candidates(pairs):
     """chunk_id를 중복 제거 키로 사용하고 found_by_query를 Metadata에 기록합니다."""
-
+    from coursekit.multi_query import merge_found
     # BEGIN D27-03-B02
     # TODO D27-03-B02: chunk_id를 중복 제거 키로 사용하고 found_by_query를 Metadata에 기록합니다.
     # END D27-03-B02
