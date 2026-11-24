@@ -7,28 +7,25 @@ sys.path.insert(0,str(ROLE_ROOT))
 
 
 import argparse
-
 from coursekit.workshops import STAGE_RUNNERS
-
 from coursekit.io import save_report
 
 
 
 def prepare_pipeline_request(case):
     """원 질문과 History를 함께 보존하고 검색용 질문은 Chain 내부에서 만듭니다."""
+    return {'query': case['question'] , 'history': case['history'], 'category': case['category'], 'candidate_k': 5, 'context_k': 2, 'use_rewrite': True, 'use_multiquery': False, 'use_rerank': True}
     # BEGIN D27-06-B01
     # TODO D27-06-B01: 원 질문과 History를 함께 보존하고 검색용 질문은 Chain 내부에서 만듭니다.
-    # 반환값과 예외 조건은 README.md의 수행 기준을 따르세요.
-    raise NotImplementedError("D27-06-B01 미완성")
     # END D27-06-B01
 
 
 def wire_langchain_pipeline(dependencies, offline):
     """LCEL는 Runnable을 준비할 뿐이고 .invoke()가 실행 시작점입니다."""
+    from coursekit.pipeline import create_rag_pipeline
+    return create_rag_pipeline(*dependencies, offline=offline)
     # BEGIN D27-06-B02
     # TODO D27-06-B02: LCEL는 Runnable을 준비할 뿐이고 .invoke()가 실행 시작점입니다.
-    # 반환값과 예외 조건은 README.md의 수행 기준을 따르세요.
-    raise NotImplementedError("D27-06-B02 미완성")
     # END D27-06-B02
 
 
