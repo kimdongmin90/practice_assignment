@@ -7,19 +7,16 @@ sys.path.insert(0,str(ROLE_ROOT))
 
 
 import argparse
-
 from coursekit.workshops import STAGE_RUNNERS
-
 from coursekit.io import save_report
 
 
 
 def create_pairs(question, docs):
     """CrossEncoder 입력은 [질문, 문서본문]의 쌍 목록입니다."""
+    return [(question, d.page_content) for d in docs]
     # BEGIN D27-05-B01
     # TODO D27-05-B01: CrossEncoder 입력은 [질문, 문서본문]의 쌍 목록입니다.
-    # 반환값과 예외 조건은 README.md의 수행 기준을 따르세요.
-    raise NotImplementedError("D27-05-B01 미완성")
     # END D27-05-B01
 
 
@@ -27,8 +24,8 @@ def rank_documents(question, docs, scorer):
     """Reranker는 후보를 새로 찾지 않고 동일 후보를 순위 변경합니다."""
     # BEGIN D27-05-B02
     # TODO D27-05-B02: Reranker는 후보를 새로 찾지 않고 동일 후보를 순위 변경합니다.
-    # 반환값과 예외 조건은 README.md의 수행 기준을 따르세요.
-    raise NotImplementedError("D27-05-B02 미완성")
+    from coursekit.reranking import rerank_documents
+    return rerank_documents(question, docs, scorer, top_n=3)
     # END D27-05-B02
 
 
