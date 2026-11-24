@@ -10,6 +10,20 @@
 
 </div>
 
+## 🔀 Git 관리 구조
+
+```mermaid
+flowchart LR
+    U[("upstream\n(수업 원본)")]
+    L["Local (main)\n날짜별 폴더 관리"]
+    O[("origin\n(내 저장소)")]
+
+    U -- "fetch & checkout\n(새 날짜 폴더만)" --> L
+    L -- "commit & push" --> O
+```
+
+---
+
 ## 💌 수강생 여러분께
 
 처음부터 잘하는 사람은 없습니다.
