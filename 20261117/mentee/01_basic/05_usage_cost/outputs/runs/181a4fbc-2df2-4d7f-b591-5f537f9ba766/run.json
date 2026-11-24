@@ -1,0 +1,26 @@
+{
+  "run_id": "181a4fbc-2df2-4d7f-b591-5f537f9ba766",
+  "case_id": "USAGE",
+  "source_mode": "not_run",
+  "run_status": "not_run",
+  "reason": "추가 호출을 하지 않습니다. --run-file에 앞 교시의 run.json을 지정하세요",
+  "model": null,
+  "answer_object": null,
+  "evidence_ok": null,
+  "attempts": [],
+  "new_api_send_count": 0,
+  "simulated_send_count": 0,
+  "usage": null,
+  "estimated_usd": null,
+  "request_ms": null,
+  "first_text_ms": null,
+  "e2e_ms": null,
+  "environment": {
+    "python": "3.13.16",
+    "platform": "Windows",
+    "openai": "not_installed",
+    "pydantic": "2.14.3",
+    "python-dotenv": "not_installed",
+    "httpx": "not_installed"
+  }
+}

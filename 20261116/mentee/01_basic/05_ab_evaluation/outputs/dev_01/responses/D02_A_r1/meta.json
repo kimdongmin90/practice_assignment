@@ -1,0 +1,11 @@
+{
+  "source_mode": "manual_chat",
+  "execution_state": "not_run",
+  "attempt": 1,
+  "model_label": "미확인",
+  "observed_at": null,
+  "recorded_at": null,
+  "tools_and_personalization": "미확인",
+  "reason": "미실행",
+  "raw_sha256": null
+}

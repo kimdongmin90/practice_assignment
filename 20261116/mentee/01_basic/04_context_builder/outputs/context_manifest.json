@@ -1,0 +1,27 @@
+{
+  "context_version": "knowledge_v1",
+  "included_ids": [
+    102
+  ],
+  "excluded": [
+    {
+      "id": 101,
+      "reason": "제외 이유(값이 없습니다)"
+    },
+    {
+      "id": 103,
+      "reason": "제외 이유(값이 없습니다)"
+    }
+  ],
+  "budget": {
+    "source": "hypothetical_budget_not_model_measurement",
+    "parts": {
+      "window": 8192,
+      "instructions_question": 800,
+      "examples": 600,
+      "output_reserve": 1600,
+      "margin": 256
+    },
+    "available_for_context": 4936
+  }
+}

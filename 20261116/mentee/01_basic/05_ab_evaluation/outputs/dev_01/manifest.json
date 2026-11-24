@@ -1,0 +1,101 @@
+{
+  "format": "day21_manual_v1",
+  "bundle_sha256": "5d075439d762a0f0e3dbbd7e69d6d3b443dc701206f0af3bb587e09e10173e71",
+  "source_mode": "manual_chat",
+  "context_version": "knowledge_v1",
+  "schema_version": "answer_schema_v1",
+  "created_at": "2026-11-17T00:40:08.752613+00:00",
+  "tasks": [
+    {
+      "slot_id": "D01_A_r1",
+      "case_id": "D01",
+      "variant": "A",
+      "repeat": 1,
+      "question": "파일을 어디에 보관하나요?",
+      "expected_behavior": "답변 가능: 개인 폴더",
+      "selected_ids": [
+        101
+      ],
+      "prompt_version": "answer_v1",
+      "prompt_sha256": "31eaf4064e4d98c8d456ea3423f36b5f797173262c64f51a97b564d6d0031d66",
+      "context_sha256": "5293e2497cdfaaf3005a47da8399c5513b8c5d842496126385269d796de4c7d4",
+      "context_json": "[{\"id\": 101, \"title\": \"실습 파일 보관\", \"content\": \"실습 파일은 개인 폴더에 보관합니다.\", \"category\": \"learning\"}]"
+    },
+    {
+      "slot_id": "D01_B_r1",
+      "case_id": "D01",
+      "variant": "B",
+      "repeat": 1,
+      "question": "파일을 어디에 보관하나요?",
+      "expected_behavior": "답변 가능: 개인 폴더",
+      "selected_ids": [
+        101
+      ],
+      "prompt_version": "answer_v2",
+      "prompt_sha256": "39184b449090e41019c0848f5874da0c4949718b83d486bde05cb3a1bb113224",
+      "context_sha256": "5293e2497cdfaaf3005a47da8399c5513b8c5d842496126385269d796de4c7d4",
+      "context_json": "[{\"id\": 101, \"title\": \"실습 파일 보관\", \"content\": \"실습 파일은 개인 폴더에 보관합니다.\", \"category\": \"learning\"}]"
+    },
+    {
+      "slot_id": "D02_A_r1",
+      "case_id": "D02",
+      "variant": "A",
+      "repeat": 1,
+      "question": "서버는 어느 폴더에서 실행하나요?",
+      "expected_behavior": "답변 가능: 프로젝트 폴더",
+      "selected_ids": [
+        102
+      ],
+      "prompt_version": "answer_v1",
+      "prompt_sha256": "87ba8e0f5d5a3115c952a5156518cb18c28a55d06aa487e7ecdbfa599461e300",
+      "context_sha256": "03336a298b50afbbe818e22245601e1abd58e68f20f6b516ad601f81f684599a",
+      "context_json": "[{\"id\": 102, \"title\": \"서버 실행\", \"content\": \"프로젝트 폴더에서 서버를 실행합니다.\", \"category\": \"environment\"}]"
+    },
+    {
+      "slot_id": "D02_B_r1",
+      "case_id": "D02",
+      "variant": "B",
+      "repeat": 1,
+      "question": "서버는 어느 폴더에서 실행하나요?",
+      "expected_behavior": "답변 가능: 프로젝트 폴더",
+      "selected_ids": [
+        102
+      ],
+      "prompt_version": "answer_v2",
+      "prompt_sha256": "61672175a53b05774b01c4b0a1257513d07665d769d78ae269ef6ae521162ebb",
+      "context_sha256": "03336a298b50afbbe818e22245601e1abd58e68f20f6b516ad601f81f684599a",
+      "context_json": "[{\"id\": 102, \"title\": \"서버 실행\", \"content\": \"프로젝트 폴더에서 서버를 실행합니다.\", \"category\": \"environment\"}]"
+    },
+    {
+      "slot_id": "D03_A_r1",
+      "case_id": "D03",
+      "variant": "A",
+      "repeat": 1,
+      "question": "파일은 몇 년 보관하나요?",
+      "expected_behavior": "정보 부족: 보관 기간",
+      "selected_ids": [
+        101
+      ],
+      "prompt_version": "answer_v1",
+      "prompt_sha256": "61bd13d42df45e8c26de1919710fd016c6a5ba7e060a3c4af85541e83a4316ac",
+      "context_sha256": "5293e2497cdfaaf3005a47da8399c5513b8c5d842496126385269d796de4c7d4",
+      "context_json": "[{\"id\": 101, \"title\": \"실습 파일 보관\", \"content\": \"실습 파일은 개인 폴더에 보관합니다.\", \"category\": \"learning\"}]"
+    },
+    {
+      "slot_id": "D03_B_r1",
+      "case_id": "D03",
+      "variant": "B",
+      "repeat": 1,
+      "question": "파일은 몇 년 보관하나요?",
+      "expected_behavior": "정보 부족: 보관 기간",
+      "selected_ids": [
+        101
+      ],
+      "prompt_version": "answer_v2",
+      "prompt_sha256": "4d42650e232932e59252e7a4e41c593ba3c4737058b7e7499b04b6e60c87afa1",
+      "context_sha256": "5293e2497cdfaaf3005a47da8399c5513b8c5d842496126385269d796de4c7d4",
+      "context_json": "[{\"id\": 101, \"title\": \"실습 파일 보관\", \"content\": \"실습 파일은 개인 폴더에 보관합니다.\", \"category\": \"learning\"}]"
+    }
+  ],
+  "manifest_sha256": "375337733713cdf68ce27dc8da8597f01db5786f84ad620004aed6269d9856b9"
+}

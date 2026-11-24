@@ -1,0 +1,26 @@
+{
+  "run_id": "93be7b2c-dc39-43d6-9686-6101437fccb8",
+  "case_id": "H01",
+  "source_mode": "not_run",
+  "run_status": "not_run",
+  "reason": "실제 호출은 --allow-paid 확인 뒤 실행합니다",
+  "model": null,
+  "answer_object": null,
+  "evidence_ok": null,
+  "attempts": [],
+  "new_api_send_count": 0,
+  "simulated_send_count": 0,
+  "usage": null,
+  "estimated_usd": null,
+  "request_ms": null,
+  "first_text_ms": null,
+  "e2e_ms": null,
+  "environment": {
+    "python": "3.13.16",
+    "platform": "Windows",
+    "openai": "not_installed",
+    "pydantic": "2.14.3",
+    "python-dotenv": "not_installed",
+    "httpx": "not_installed"
+  }
+}

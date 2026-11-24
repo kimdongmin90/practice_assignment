@@ -1,0 +1,27 @@
+{
+  "origin_run_id": "0b9782d2-783b-43ab-a032-76e04c570873",
+  "source_mode": "api_live",
+  "rows": [
+    {
+      "run_id": "0b9782d2-783b-43ab-a032-76e04c570873",
+      "source_mode": "api_live",
+      "send_attempt": 1,
+      "request_ms": 1368.296,
+      "first_text_ms": null,
+      "usage": {
+        "input_tokens": 28,
+        "output_tokens": 31,
+        "total_tokens": 59,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "estimated_usd": "0.0001605",
+      "cost_status": "estimated",
+      "price_version": "classroom-standard-text-2026-11-12",
+      "price_checked_at": "2026-11-12",
+      "currency": "USD",
+      "service_tier": "default"
+    }
+  ],
+  "cost_totals": null
+}
