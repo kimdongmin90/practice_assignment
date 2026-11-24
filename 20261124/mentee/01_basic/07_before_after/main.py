@@ -7,28 +7,28 @@ sys.path.insert(0,str(ROLE_ROOT))
 
 
 import argparse
-
 from coursekit.workshops import STAGE_RUNNERS
-
 from coursekit.io import save_report
 
 
 
 def compare_rankings(before, after, gold):
     """고정한 관련 문서 ID를 Top-2에 포함했는지 확인합니다."""
+    from coursekit.evaluation import compare_lists
+    return compare_lists(before, after, gold, k=2)
     # BEGIN D27-07-B01
     # TODO D27-07-B01: 고정한 관련 문서 ID를 Top-2에 포함했는지 확인합니다.
-    # 반환값과 예외 조건은 README.md의 수행 기준을 따르세요.
-    raise NotImplementedError("D27-07-B01 미완성")
     # END D27-07-B01
 
 
 def interpret_change(report):
     """순위가 바뀌어도 반드시 개선됐다는 결론을 내리지 않습니다."""
+    before=report['before_contains_gold']; after=report['after_contains_gold']
+    if before is None: return 'gold 없음: 인간 검토 필요'
+    if before==after: return 'Top-k 관련 문서 포함 여부는 변하지 않음'
+    return '관련 문서 Top-k 포함 여부가 달라짐(추가 검증 필요)'
     # BEGIN D27-07-B02
     # TODO D27-07-B02: 순위가 바뀌어도 반드시 개선됐다는 결론을 내리지 않습니다.
-    # 반환값과 예외 조건은 README.md의 수행 기준을 따르세요.
-    raise NotImplementedError("D27-07-B02 미완성")
     # END D27-07-B02
 
 
