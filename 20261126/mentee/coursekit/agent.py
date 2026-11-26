@@ -78,8 +78,13 @@ def run_agent(question:str)->dict:
         if m.__class__.__name__=='AIMessage' and not getattr(m,'tool_calls',[]):
             final=m;break
     if final is None:raise RuntimeError('Agent가 정상 Final AIMessage를 반환하지 않았습니다.')
-    if not isinstance(final.content,str):
-        raise RuntimeError('Agent 최종 출력이 텍스트가 아닙니다. Structured Output 파서가 필요합니다.')
+    # 수정 코드
+    answer_text = str(final.text).strip()
+
+    if not answer_text:
+        raise RuntimeError(
+            'Agent 최종 AIMessage에서 텍스트를 추출할 수 없습니다.'
+        )
     verified=set(); traces=[]
     for m in messages:
         if m.__class__.__name__=='ToolMessage':
@@ -90,8 +95,8 @@ def run_agent(question:str)->dict:
                 if isinstance(s,dict):verified.add(s.get('source_id'))
             traces.append({'tool':getattr(m,'name',None),'tool_call_id':getattr(m,'tool_call_id',None),
                            'status':value.get('status','unparsed')})
-    used=set(SOURCE_ID_PATTERN.findall(final.content))
-    return {'status':'completed','answer':final.content,
+    used = set(SOURCE_ID_PATTERN.findall(answer_text))
+    return {'status':'completed','answer': answer_text,
             'tool_call_summary':count_tool_calls(messages),'tool_trace':traces,
             'cited_source_ids':sorted(used),'verified_evidence_ids':sorted(x for x in verified if x),
             'citation_ids_valid':used.issubset(verified)}
