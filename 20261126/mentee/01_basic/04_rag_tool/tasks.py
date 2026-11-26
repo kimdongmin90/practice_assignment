@@ -5,13 +5,16 @@ DB: 기존 report_agent_lab / 반드시 SELECT. 실제 Tool은 --live에서 실�
 
 def prepare_search(query: str, category: str = 'ALL') -> dict:
     """실제 6개 카테고리만 허용하고 query/category를 반환."""
+    from coursekit.contracts import search_request
+    query,category=search_request(query,category)
+    return {'query':query,'category':category}
     # TODO D29-04-B-01: 실제 6개 카테고리만 허용하고 query/category를 반환.
     # 힌트: 실제 query/category 검증 후 coursekit.rag의 live 연결을 호출하세요.
-    raise NotImplementedError('D29-04-B-01: 직접 구현하세요')
 
 def invoke_rag(request: dict) -> dict:
     """실제 기존 DB의 pgvector/CUDA RAG를 호출합니다. 가짜 검색 결과 금지."""
+    from coursekit.rag import rag_answer
+    return rag_answer(request['query'],request['category'])
     # TODO D29-04-B-02: 실제 기존 DB의 pgvector/CUDA RAG를 호출합니다. 가짜 검색 결과 금지.
     # 힌트: 실제 query/category 검증 후 coursekit.rag의 live 연결을 호출하세요.
-    raise NotImplementedError('D29-04-B-02: 직접 구현하세요')
 
